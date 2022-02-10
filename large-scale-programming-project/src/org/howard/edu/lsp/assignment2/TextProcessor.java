@@ -1,71 +1,52 @@
 package org.howard.edu.lsp.assignment2;
-
 import java.util.Scanner;
 
+
 public class TextProcessor {
-	public static int sum = 0, product = 1;
-
-	public static void processInput() {
-		
-		try (Scanner in = new Scanner(System.in)) {
-			while(true) {
-
-				System.out.println("String?");
-
-				String input = in.nextLine();
-
-				if(input.charAt(0) == '.') {
-
-				break;
-				}
-				else {
-					scanString(input);
-				}
-
-			}
-		}
-
-		System.out.println("Sum: " + sum);
-
-	System.out.println("Product: " + product);
-
-	}
 	
-	
+	public static void main(String[ ] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("How many numbers would you like to enter?");
+        
+		int tokens = input.nextInt();	
+        int array[]= new int[tokens];
+        
+        System.out.print("Please type in your numbers: ");
+        														//Intakes tokens user inputs 
+        int prod = 1;
+        int sum = 0;
 
-	public static void scanString(String input) {
+        for (int i = 0 ; i < array.length; i++ ) {	
+        	array[i] = input.nextInt();				
+            prod = prod * array[i];	
+            sum += array[i];	
+        }
+          
+        System.out.println("Tokens:");	//Displays tokens entered
+        printArray(array);
+       
+        System.out.println("The product of your numbers is:" +"\n" + prod);	//Displays product
+        System.out.println("The sum of your numbers is:" + "\n"+ sum);			//Displays sum
+        input.close();
 
-	int number, index, beginIndex = 0;
+ 
+        String obj = "Goodbye";
+        if (input.equals(obj)) {		//System exits when user is enters the keyword "Goodbye"
+        	System.exit(0);				
+        }
+}
 
-	while(true) {
-		
-		index = input.indexOf(' ');
-		
-		if(index == -1) {
-			break;
-		}
-	else {
-		number = Integer.parseInt(input.substring(beginIndex, index));
-		sum += number;
-		product *= number;
-		input = input.substring(index + 1, input.length());
 
-		}
+    public static void printArray(int arr[ ]){
+    	int n = arr.length;
+    	for (int i = 0; i < n; i++) {
+    		System.out.print(arr[i] + "\n");	//Allows for each  statement to be displayed on separate lines
 
-		}
+    	}
+    }
 
-		number = Integer.parseInt(input);
-
-		sum += number;
-
-		product *= number;
-
-		}
-
-	public static void main(String args[]) {
-
-	processInput();
-
-	}
 
 }
+//Uses techniques from StackOverflow in order to take in input from the user
+//Used research from Scientech.com in order to work with comparing strings/tokens
+//Used research and techniques from https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html in order to make the scanner work (Ex.importing java.util.scanner) 
